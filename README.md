@@ -29,6 +29,11 @@ Recorded a real call over scrcpy on the actual device. All three sources carried
 See `research/calltest/` (wav files git-ignored). The two sides differ in level; a future
 version can auto-balance them.
 
+## Setup
+
+See **[SETUP.md](SETUP.md)** for step-by-step on-device setup — installing Shizuku, the
+two MIUI/HyperOS USB-debugging toggles, granting permission, and battery hardening.
+
 ## Build
 
 Requirements: JDK 21, Android SDK (platform 37, build-tools 36), Gradle wrapper included.
