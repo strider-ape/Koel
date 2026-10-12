@@ -32,6 +32,7 @@ class CallRecorderService : Service() {
     private var currentFile: File? = null
     @Volatile private var recording = false
     private var lastNumber: String? = null
+    private var callStartedAt = 0L
 
     override fun onCreate() {
         super.onCreate()
@@ -81,6 +82,7 @@ class CallRecorderService : Service() {
                 currentFile = null
             } else {
                 recording = true
+                callStartedAt = System.currentTimeMillis()
                 notify("Recording call")
             }
         } catch (t: Throwable) {
@@ -95,7 +97,14 @@ class CallRecorderService : Service() {
         val result = runCatching { svc?.stop() }.getOrNull()
         Log.i(TAG, "stop result: $result")
         currentFile?.let { f ->
-            if (!f.exists() || f.length() == 0L) f.delete()
+            if (!f.exists() || f.length() == 0L) {
+                f.delete()
+            } else {
+                // The call-log row exists now the call has ended; label the file from it.
+                val info = com.koel.app.data.CallLogLookup.latest(this, callStartedAt)
+                val finalFile = com.koel.app.data.Recordings.finalize(f, info)
+                Log.i(TAG, "saved ${finalFile.name}")
+            }
         }
         currentFile = null
         notify("Watching for calls")

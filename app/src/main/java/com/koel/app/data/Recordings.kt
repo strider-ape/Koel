@@ -40,6 +40,20 @@ object Recordings {
         return File(dir(context), name)
     }
 
+    /**
+     * Renames a provisional recording to its final name once the call is known.
+     * Keeps the original timestamp prefix; returns the new file (or the old one on failure).
+     */
+    fun finalize(file: File, info: CallInfo?): File {
+        if (info == null) return file
+        val timePart = file.nameWithoutExtension.substringBefore("__")
+            .ifBlank { stamp.format(Date(file.lastModified())) }
+        val dir = if (info.incoming) "in" else "out"
+        val who = (info.name ?: info.number ?: "unknown").sanitize()
+        val target = File(file.parentFile, "${timePart}__${dir}__${who}.m4a")
+        return if (file.renameTo(target)) target else file
+    }
+
     fun list(context: Context): List<Recording> =
         dir(context).listFiles { f -> f.extension == "m4a" }
             ?.sortedByDescending { it.lastModified() }

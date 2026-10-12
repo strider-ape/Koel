@@ -60,6 +60,8 @@ class MainActivity : ComponentActivity() {
     private fun requestRuntimePermissions() {
         val needed = buildList {
             add(Manifest.permission.READ_PHONE_STATE)
+            add(Manifest.permission.READ_CALL_LOG)
+            add(Manifest.permission.READ_CONTACTS)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 add(Manifest.permission.POST_NOTIFICATIONS)
         }.filter {
