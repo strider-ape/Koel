@@ -22,7 +22,9 @@ class AacRecorder(
     private val context: Context,
     private val audioSource: Int,
     private val out: FileDescriptor,
+    private val enhance: Boolean = true,
 ) {
+    private val enhancer: AudioEnhancer? = if (enhance) AudioEnhancer(SAMPLE_RATE) else null
     @Volatile private var running = false
     private var thread: Thread? = null
     @Volatile private var error: String? = null
@@ -77,6 +79,7 @@ class AacRecorder(
             while (running) {
                 val n = record.read(pcm, 0, pcm.size)
                 if (n > 0) {
+                    enhancer?.process(pcm, n)
                     trackPeak(pcm, n)
                     feed(codec, pcm, n, false)
                 }

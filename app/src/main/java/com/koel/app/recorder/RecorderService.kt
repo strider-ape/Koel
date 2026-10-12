@@ -23,11 +23,11 @@ class RecorderService(context: Context) : IRecorderService.Stub() {
 
     override fun getUid(): Int = Process.myUid()
 
-    override fun start(out: ParcelFileDescriptor, audioSource: Int): String? {
+    override fun start(out: ParcelFileDescriptor, audioSource: Int, enhance: Boolean): String? {
         if (recorder?.isRecording() == true) return "already recording"
         return try {
             val fd: FileDescriptor = out.fileDescriptor
-            val r = AacRecorder(shellContext, audioSource, fd)
+            val r = AacRecorder(shellContext, audioSource, fd, enhance)
             r.start()
             recorder = r
             Log.i(TAG, "recording started (uid=${Process.myUid()}, source=$audioSource)")

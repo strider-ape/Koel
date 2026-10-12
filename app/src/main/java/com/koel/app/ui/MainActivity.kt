@@ -72,7 +72,9 @@ class MainActivity : ComponentActivity() {
     private fun Home() {
         val state by ShizukuManager.state.collectAsStateWithLifecycle()
         val message by ShizukuManager.message.collectAsStateWithLifecycle()
-        var watching by remember { mutableStateOf(false) }
+        val prefs = remember { com.koel.app.data.Prefs(this) }
+        var watching by remember { mutableStateOf(prefs.autoRecord) }
+        var enhance by remember { mutableStateOf(prefs.enhanceAudio) }
         var recordings by remember { mutableStateOf(Recordings.list(this)) }
 
         Scaffold { pad ->
@@ -105,6 +107,7 @@ class MainActivity : ComponentActivity() {
                                     enabled = ready,
                                     onCheckedChange = {
                                         watching = it
+                                        prefs.autoRecord = it
                                         if (it) CallRecorderService.start(this@MainActivity)
                                         else CallRecorderService.stop(this@MainActivity)
                                     },
@@ -113,6 +116,20 @@ class MainActivity : ComponentActivity() {
                         )
                         if (!ready) Text(
                             "Needs Shizuku ready first.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Row(
+                            "Enhance audio quality",
+                            trailing = {
+                                Switch(
+                                    checked = enhance,
+                                    onCheckedChange = { enhance = it; prefs.enhanceAudio = it },
+                                )
+                            },
+                        )
+                        Text(
+                            "Cleans up and levels each recording (recommended).",
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }

@@ -11,7 +11,7 @@ interface IRecorderService {
     int getUid() = 1;
 
     // Starts recording into `out` (an .m4a container). Returns null on success, or an error message.
-    String start(in ParcelFileDescriptor outFd, int audioSource) = 2;
+    String start(in ParcelFileDescriptor outFd, int audioSource, boolean enhance) = 2;
 
     // Stops and finalizes the file. Returns "durationMs;peak" or an error message prefixed with "ERR:".
     String stop() = 3;

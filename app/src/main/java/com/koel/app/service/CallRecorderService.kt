@@ -72,7 +72,8 @@ class CallRecorderService : Service() {
             val pfd = ParcelFileDescriptor.open(
                 file, ParcelFileDescriptor.MODE_CREATE or ParcelFileDescriptor.MODE_WRITE_ONLY
             )
-            val err = svc.start(pfd, VOICE_CALL_SOURCE)
+            val enhance = com.koel.app.data.Prefs(this).enhanceAudio
+            val err = svc.start(pfd, VOICE_CALL_SOURCE, enhance)
             if (err != null) {
                 Log.e(TAG, "recorder start error: $err")
                 notify("Recording failed: $err")
