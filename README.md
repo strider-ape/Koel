@@ -57,8 +57,3 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 - [ ] HyperOS battery/autostart hardening
 - [ ] Playback with waveform, auto-balance channels
 - [ ] Later: on-device transcription (Hindi/English), search, encryption, backup
-
-## Legal
-
-Recording your own calls is generally lawful in India. Do not share recordings of others
-without consent. Recordings stay on-device.
