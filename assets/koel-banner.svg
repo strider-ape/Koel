@@ -1,0 +1,15 @@
+<svg width="720" height="200" viewBox="0 0 720 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Koel — call recorder">
+  <rect x="4" y="4" width="712" height="192" rx="30" fill="#6C4CC4"/>
+  <g transform="translate(140,100) scale(1.5)" fill="#FFFFFF">
+    <circle cx="-28" cy="0" r="14"/>
+    <polygon points="-15,-4 4,-8 -13,1"/>
+    <polygon points="-15,4 4,10 -13,0"/>
+    <rect x="12" y="-9" width="7" height="18" rx="3.5"/>
+    <rect x="22" y="-16" width="7" height="32" rx="3.5"/>
+    <rect x="32" y="-12" width="7" height="24" rx="3.5"/>
+    <rect x="42" y="-7" width="7" height="14" rx="3.5"/>
+    <circle cx="-24" cy="-4" r="3.2" fill="#E5484D"/>
+  </g>
+  <text x="258" y="118" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="600" fill="#FFFFFF">koel</text>
+  <text x="262" y="150" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#DACFF6">call recorder</text>
+</svg>

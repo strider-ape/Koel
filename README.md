@@ -1,4 +1,6 @@
-# Koel
+<p align="center">
+  <img src="assets/koel-banner.svg" alt="Koel — call recorder" width="520">
+</p>
 
 A personal call recorder for Android that records **both sides** of a call, silently,
 **without root and without unlocking the bootloader**. Built for a Poco M4 Pro 4G
