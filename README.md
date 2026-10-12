@@ -56,9 +56,11 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 - [x] Call-state watcher + foreground service
 - [x] Minimal UI (status, auto-record toggle, recordings list)
 - [x] First debug APK builds
-- [ ] Install + first real recording test on device
-- [ ] Caller number/name from call log; correct in/out direction
-- [ ] Reboot reminder (Shizuku needs restart after reboot)
-- [ ] HyperOS battery/autostart hardening
-- [ ] Playback with waveform, auto-balance channels
+- [x] Install + first real recording test on device (both sides captured)
+- [x] Real-time audio enhancement (high-pass, low-pass, auto-level) — v0.2
+- [x] Caller number/name from call log; correct in/out direction — v0.3
+- [x] Auto-save recordings to Download/Koel — v0.4
+- [x] Reboot reminder (Shizuku needs restart after reboot) — v0.5
+- [ ] HyperOS battery/autostart hardening (documented in SETUP.md; in-app helper TODO)
+- [ ] Playback with waveform, enhanced/raw toggle
 - [ ] Later: on-device transcription (Hindi/English), search, encryption, backup
