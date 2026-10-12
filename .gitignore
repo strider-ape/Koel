@@ -1,0 +1,10 @@
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+.kotlin/
+# Call recordings contain other people's voices - never commit them
+*.wav
+*.m4a
+research/calltest/*.wav
