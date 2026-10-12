@@ -57,6 +57,11 @@ class MainActivity : ComponentActivity() {
         ShizukuManager.refresh()
     }
 
+    private fun openShizuku() {
+        val intent = packageManager.getLaunchIntentForPackage("moe.shizuku.privileged.api")
+        if (intent != null) startActivity(intent)
+    }
+
     private fun requestRuntimePermissions() {
         val needed = buildList {
             add(Manifest.permission.READ_PHONE_STATE)
@@ -95,7 +100,19 @@ class MainActivity : ComponentActivity() {
                             Text("Grant Shizuku permission")
                         }
                     ShizukuManager.State.SHIZUKU_MISSING ->
-                        Text("Open the Shizuku app and start it, then return here.")
+                        Card(Modifier.fillMaxWidth()) {
+                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(
+                                    "Shizuku isn't running. After a reboot it needs to be started once.",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                )
+                                Text(
+                                    "Open Shizuku → Start (via wireless debugging), then come back.",
+                                    style = MaterialTheme.typography.bodySmall,
+                                )
+                                Button(onClick = { openShizuku() }) { Text("Open Shizuku") }
+                            }
+                        }
                     else -> {}
                 }
 
