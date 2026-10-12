@@ -14,8 +14,13 @@ class Prefs(context: Context) {
         get() = sp.getBoolean(KEY_AUTO, false)
         set(v) = sp.edit().putBoolean(KEY_AUTO, v).apply()
 
+    var exportToDownloads: Boolean
+        get() = sp.getBoolean(KEY_EXPORT, true)
+        set(v) = sp.edit().putBoolean(KEY_EXPORT, v).apply()
+
     companion object {
         private const val KEY_ENHANCE = "enhance_audio"
         private const val KEY_AUTO = "auto_record"
+        private const val KEY_EXPORT = "export_downloads"
     }
 }

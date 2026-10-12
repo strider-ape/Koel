@@ -77,6 +77,7 @@ class MainActivity : ComponentActivity() {
         val prefs = remember { com.koel.app.data.Prefs(this) }
         var watching by remember { mutableStateOf(prefs.autoRecord) }
         var enhance by remember { mutableStateOf(prefs.enhanceAudio) }
+        var export by remember { mutableStateOf(prefs.exportToDownloads) }
         var recordings by remember { mutableStateOf(Recordings.list(this)) }
 
         Scaffold { pad ->
@@ -132,6 +133,20 @@ class MainActivity : ComponentActivity() {
                         )
                         Text(
                             "Cleans up and levels each recording (recommended).",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Row(
+                            "Save copy to Downloads",
+                            trailing = {
+                                Switch(
+                                    checked = export,
+                                    onCheckedChange = { export = it; prefs.exportToDownloads = it },
+                                )
+                            },
+                        )
+                        Text(
+                            "Also saves each recording to Download/Koel so it's easy to find.",
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }

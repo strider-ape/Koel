@@ -104,6 +104,10 @@ class CallRecorderService : Service() {
                 val info = com.koel.app.data.CallLogLookup.latest(this, callStartedAt)
                 val finalFile = com.koel.app.data.Recordings.finalize(f, info)
                 Log.i(TAG, "saved ${finalFile.name}")
+                if (com.koel.app.data.Prefs(this).exportToDownloads) {
+                    val ok = com.koel.app.data.Exporter.export(this, finalFile)
+                    Log.i(TAG, "export to Downloads/Koel: $ok")
+                }
             }
         }
         currentFile = null
